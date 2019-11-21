@@ -1,6 +1,6 @@
 <?php
 	//文件接收
-	$file =  $_FILES['myfile'];
+	@$file =  $_FILES['myfile'];
 	var_dump($file);
 	/**
 	D:\wamp64\www\PHPBasic\6.Form\demo7.php:3:
@@ -34,9 +34,22 @@
 	//文件时操作系统临时接收的，保存在临时目录下。如果PHP不做处理，那么系统就会认为数据没有意义，指定清楚。因此PHP需要将临时文件惊醒目标转移，转移到指定位置。使用函数 move_uploaded_file(临时路径，目标路径)目标存储位置需要重命名（因为临时文件名后最为tmp）
 	
 	//简单判定
-	 if ($file['error'] == 0) {
-	 	//事先建立upload目录
-	 	move_uploaded_file($file['tmp_name'],'../upload/'.$file['name']);
-	 }
-	
+	 // if ($file['error'] == 0) {
+	 // 	//事先建立upload目录
+	 // 	move_uploaded_file($file['tmp_name'],'../upload/'.$file['name']);
+	 // }
 
+
+	 //调用问价上传函数
+	 if (!$file) {
+	 	echo "文件无效";
+	 	return;
+	 }
+	 include_once 'fileupload.php';
+	 $result = fileupload($file,'../upload0',$error);
+	 if ($result) {
+	 	echo "成功";
+	 } else {
+	 	echo $error;
+	 }
+	 
