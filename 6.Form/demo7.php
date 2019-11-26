@@ -25,7 +25,7 @@
 	 3：文件只有部分上传，网络问题
 	 4：文件没有被上传，用户在浏览器没有选择文件
 	 6：找不到临时文件夹
-	 7：文件按写入失败，Linux没有给权限
+	 7：文件写入失败，Linux没有给权限
 	 5：PHP保留的代号
 	 size：文件大小（字节）
 	 */
@@ -46,7 +46,7 @@
 	 	return;
 	 }
 	 include_once 'fileupload.php';
-	 $result = fileupload($file,'../upload0',$error);
+	 $result = fileupload($file,'../upload',$error);
 	 if ($result) {
 	 	echo "成功";
 	 } else {
